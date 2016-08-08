@@ -1,6 +1,6 @@
 //
 //  VDSimpleHudViewController.m
-//  objcTemp
+//  objcHud
 //
 //  Created by Deng on 16/7/12.
 //  Copyright © Deng. All rights reserved.
@@ -11,6 +11,12 @@
 
 
 @interface VDSimpleHudViewController ()
+
+- (UIView *)__i__generateSplitLineView;
+- (UIButton *)__i__generateButton;
+- (void)__i__onLeftButtonClick;
+- (void)__i__onCenterButtonClick;
+- (void)__i__onRightButtonClick;
 
 @property (nonatomic, strong, readwrite) UILabel *titleLabel;
 @property (nonatomic, strong, readwrite) UIView *verticalSplitLineView;
@@ -89,7 +95,7 @@
 
 - (UIView *)verticalSplitLineView {
     if (!_verticalSplitLineView) {
-        _verticalSplitLineView = [self internalGenerateSplitLineView];
+        _verticalSplitLineView = [self __i__generateSplitLineView];
     }
     
     return _verticalSplitLineView;
@@ -106,7 +112,7 @@
 
 - (UIButton *)leftButton {
     if (!_leftButton) {
-        _leftButton = [self internalGenerateButton];
+        _leftButton = [self __i__generateButton];
     }
     
     return _leftButton;
@@ -114,7 +120,7 @@
 
 - (UIView *)leftButtonSplitLineView {
     if (!_leftButtonSplitLineView) {
-        _leftButtonSplitLineView = [self internalGenerateSplitLineView];
+        _leftButtonSplitLineView = [self __i__generateSplitLineView];
     }
     
     return _leftButtonSplitLineView;
@@ -122,7 +128,7 @@
 
 - (UIButton *)centerButton {
     if (!_centerButton) {
-        _centerButton = [self internalGenerateButton];
+        _centerButton = [self __i__generateButton];
     }
     
     return _centerButton;
@@ -130,7 +136,7 @@
 
 - (UIView *)rightButtonSplitLineView {
     if (!_rightButtonSplitLineView) {
-        _rightButtonSplitLineView = [self internalGenerateSplitLineView];
+        _rightButtonSplitLineView = [self __i__generateSplitLineView];
     }
     
     return _rightButtonSplitLineView;
@@ -138,7 +144,7 @@
 
 - (UIButton *)rightButton {
     if (!_rightButton) {
-        _rightButton = [self internalGenerateButton];
+        _rightButton = [self __i__generateButton];
     }
     
     return _rightButton;
@@ -158,9 +164,9 @@
     [self.buttonsLayoutView addSubview:self.rightButtonSplitLineView];
     [self.buttonsLayoutView addSubview:self.rightButton];
     
-    [self.leftButton addTarget:self action:@selector(internalOnLeftButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.centerButton addTarget:self action:@selector(internalOnCenterButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.rightButton addTarget:self action:@selector(internalOnRightButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.leftButton addTarget:self action:@selector(__i__onLeftButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.centerButton addTarget:self action:@selector(__i__onCenterButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.rightButton addTarget:self action:@selector(__i__onRightButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
     _shouldDisplayLeftButton = NO;
     _shouldDisplayCenterButton = NO;
@@ -305,13 +311,13 @@
 
 
 #pragma mark Private Methods
-- (UIView *)internalGenerateSplitLineView {
+- (UIView *)__i__generateSplitLineView {
     UIView *view = [[UIView alloc] init];
     view.backgroundColor = [UIColor lightGrayColor];
     return view;
 }
 
-- (UIButton *)internalGenerateButton {
+- (UIButton *)__i__generateButton {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
     button.backgroundColor = [UIColor clearColor];
     [button setTitleColor:[UIColor colorWithRed:0.0f green:122.0f / 255.0f blue:1.0f alpha:1.0f] forState:UIControlStateNormal];
@@ -321,21 +327,21 @@
     return button;
 }
 
-- (void)internalOnLeftButtonClick {
-    if ([self.delegate respondsToSelector:@selector(onSimpleHudViewControllerLeftButtonClick:)]) {
-        [self.delegate onSimpleHudViewControllerLeftButtonClick:self];
+- (void)__i__onLeftButtonClick {
+    if ([self.delegate respondsToSelector:@selector(leftButtonDidClickInSimpleHudViewController:)]) {
+        [self.delegate leftButtonDidClickInSimpleHudViewController:self];
     }
 }
 
-- (void)internalOnCenterButtonClick {
-    if ([self.delegate respondsToSelector:@selector(onSimpleHudViewControllerCenterButtonClick:)]) {
-        [self.delegate onSimpleHudViewControllerCenterButtonClick:self];
+- (void)__i__onCenterButtonClick {
+    if ([self.delegate respondsToSelector:@selector(centerButtonDidClickInSimpleHudViewController:)]) {
+        [self.delegate centerButtonDidClickInSimpleHudViewController:self];
     }
 }
 
-- (void)internalOnRightButtonClick {
-    if ([self.delegate respondsToSelector:@selector(onSimpleHudViewControllerRightButtonClick:)]) {
-        [self.delegate onSimpleHudViewControllerRightButtonClick:self];
+- (void)__i__onRightButtonClick {
+    if ([self.delegate respondsToSelector:@selector(rightButtonDidClickInSimpleHudViewController:)]) {
+        [self.delegate rightButtonDidClickInSimpleHudViewController:self];
     }
 }
 

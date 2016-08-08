@@ -1,6 +1,6 @@
 //
 //  VDToastView.m
-//  objcTemp
+//  objcHud
 //
 //  Created by Deng on 16/7/13.
 //  Copyright © Deng. All rights reserved.
@@ -13,6 +13,11 @@
 
 
 @interface VDToastView ()
+
+- (void)__i__initVDToastView;
+- (void)__i__showNextInfo;
+- (void)__i__hideInfo;
+- (void)__i__onKeyboardWillChangeFrame:(NSNotification *)notification;
 
 @property (nonatomic, strong, readwrite) UILabel *infoLabel;
 @property (nonatomic, assign) BOOL isShowing;
@@ -47,7 +52,7 @@
 
 - (void)pushInfo:(NSString *)info {
     [self.infoArray vd_queuePush:info];
-    [self internalShowNextInfo];
+    [self __i__showNextInfo];
 }
 
 #pragma mark Properties
@@ -83,7 +88,7 @@
 - (instancetype)init {
     self = [super init];
     
-    [self internalInitVDToastView];
+    [self __i__initVDToastView];
     
     return self;
 }
@@ -91,7 +96,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     
-    [self internalInitVDToastView];
+    [self __i__initVDToastView];
     
     return self;
 }
@@ -99,7 +104,7 @@
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     
-    [self internalInitVDToastView];
+    [self __i__initVDToastView];
     
     return self;
 }
@@ -143,7 +148,7 @@
 
 
 #pragma mark Private Method
-- (void)internalInitVDToastView {
+- (void)__i__initVDToastView {
     _defaultShowTime = 3;
     
     self.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:150.0f / 255.0f];
@@ -153,10 +158,10 @@
     
     self.userInteractionEnabled = NO;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(internalOnKeyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(__i__onKeyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 
-- (void)internalShowNextInfo {
+- (void)__i__showNextInfo {
     if (self.isShowing) {
         return;
     }
@@ -175,11 +180,11 @@
         self.hidden = NO;
     } completion:^(BOOL finished) {
         VDStrongifySelf;
-        [self performSelector:@selector(internalHideInfo) withObject:nil afterDelay:self.defaultShowTime];
+        [self performSelector:@selector(__i__hideInfo) withObject:nil afterDelay:self.defaultShowTime];
     }];
 }
 
-- (void)internalHideInfo {
+- (void)__i__hideInfo {
     if (!self.isShowing) {
         return;
     }
@@ -192,11 +197,11 @@
         VDStrongifySelf;
         [self removeFromSuperview];
         self.isShowing = NO;
-        [self internalShowNextInfo];
+        [self __i__showNextInfo];
     }];
 }
 
-- (void)internalOnKeyboardWillChangeFrame:(NSNotification *)notification {
+- (void)__i__onKeyboardWillChangeFrame:(NSNotification *)notification {
     CGRect endFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
     if (endFrame.origin.y >= VDWindow.bounds.size.height) {
         self.keyboardHeight = 0.0f;

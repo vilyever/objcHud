@@ -1,6 +1,6 @@
 //
 //  VDToastView.h
-//  objcTemp
+//  objcHud
 //
 //  Created by Deng on 16/7/13.
 //  Copyright © Deng. All rights reserved.
@@ -26,6 +26,5 @@
 @property (nonatomic, assign) NSTimeInterval defaultShowTime;
 
 #pragma mark Private Method
-- (void)internalInitVDToastView;
 
 @end

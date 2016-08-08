@@ -1,14 +1,12 @@
 //
 //  VDHudMaskView.m
-//  objcTemp
+//  objcHud
 //
 //  Created by Deng on 16/7/11.
 //  Copyright © Deng. All rights reserved.
 //
 
 #import "VDHudMaskView.h"
-//#import "objcTemp.h"
-//@import objcTemp;
 #import <objcWindow/objcWindow.h>
 #import <objcView/objcView.h>
 

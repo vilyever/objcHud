@@ -1,6 +1,6 @@
 //
 //  VDSimpleHudViewController.h
-//  objcTemp
+//  objcHud
 //
 //  Created by Deng on 16/7/12.
 //  Copyright © Deng. All rights reserved.
@@ -14,9 +14,9 @@
 @protocol VDSimpleHudViewControllerDelegate <NSObject>
 
 @optional
-- (void)onSimpleHudViewControllerLeftButtonClick:(VDSimpleHudViewController *)controller;
-- (void)onSimpleHudViewControllerCenterButtonClick:(VDSimpleHudViewController *)controller;
-- (void)onSimpleHudViewControllerRightButtonClick:(VDSimpleHudViewController *)controller;
+- (void)leftButtonDidClickInSimpleHudViewController:(VDSimpleHudViewController *)controller;
+- (void)centerButtonDidClickInSimpleHudViewController:(VDSimpleHudViewController *)controller;
+- (void)rightButtonDidClickInSimpleHudViewController:(VDSimpleHudViewController *)controller;
 
 @end
 
@@ -48,8 +48,5 @@
 @property (nonatomic, strong, readonly) UIButton *rightButton;
 
 #pragma mark Private Method
-- (void)internalOnLeftButtonClick;
-- (void)internalOnCenterButtonClick;
-- (void)internalOnRightButtonClick;
 
 @end

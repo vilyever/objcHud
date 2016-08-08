@@ -1,6 +1,6 @@
 //
 //  UIView+VDHud.m
-//  objcTemp
+//  objcHud
 //
 //  Created by Deng on 16/7/11.
 //  Copyright © Deng. All rights reserved.
@@ -9,8 +9,6 @@
 #import "UIView+VDHud.h"
 
 //#import <objc/runtime.h>
-//#import "objcTemp.h"
-//@import objcTemp;
 
 #import "VDHudMaskView.h"
 
